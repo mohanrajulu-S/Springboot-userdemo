@@ -8,12 +8,15 @@ public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
-    @Column
+    private Integer userId;
+
+    @Column(name = "user_name")
     private String userName;
-    @Column
+
+    @Column(name = "user_mail")
     private String userMail;
-    @Column
+
+    @Column(name = "user_mobile_number")
     private String userMobileNumber;
 
     public User()
@@ -21,18 +24,20 @@ public class User
 
     }
 
-    public User(String userName, String userMail, String userMobileNumber)
-    {
-        this.userName = userName;
-        this.userMail = userMail;
-        this.userMobileNumber = userMobileNumber;
-    }
+//    public User(String userName, String userMail, String userMobileNumber)
+//    {
+//        this.userName = userName;
+//        this.userMail = userMail;
+//        this.userMobileNumber = userMobileNumber;
+//    }
 
-    public int getUserId() {
+    public Integer getUserId()
+    {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId)
+    {
         this.userId = userId;
     }
 
@@ -60,19 +65,14 @@ public class User
         this.userMobileNumber = userMobileNumber;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", userMail='" + userMail + '\'' +
-                ", userMobileNumber='" + userMobileNumber + '\'' +
-                '}';
-    }
-
-    public void setId(Long id)
-    {
-
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", userName='" + userName + '\'' +
+//                ", userMail='" + userMail + '\'' +
+//                ", userMobileNumber='" + userMobileNumber + '\'' +
+//                '}';
+//    }
 
 }
