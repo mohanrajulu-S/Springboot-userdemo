@@ -19,7 +19,6 @@ public class Attendance
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //@Column(nullable = false)
     @Column(name = "attendance_date", nullable = false)
     private LocalDate attendanceDate;
 
@@ -27,19 +26,9 @@ public class Attendance
      @Column(nullable = false)
     private AttendanceStatus status;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-
-
-
-
-
-
 
 
     public Integer getId() {

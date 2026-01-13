@@ -24,13 +24,6 @@ public class User
 
     }
 
-//    public User(String userName, String userMail, String userMobileNumber)
-//    {
-//        this.userName = userName;
-//        this.userMail = userMail;
-//        this.userMobileNumber = userMobileNumber;
-//    }
-
     public Integer getUserId()
     {
         return userId;
@@ -65,14 +58,5 @@ public class User
         this.userMobileNumber = userMobileNumber;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userId=" + userId +
-//                ", userName='" + userName + '\'' +
-//                ", userMail='" + userMail + '\'' +
-//                ", userMobileNumber='" + userMobileNumber + '\'' +
-//                '}';
-//    }
 
 }
