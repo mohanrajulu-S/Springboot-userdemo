@@ -2,6 +2,7 @@ package com.example.userdemo.entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "users")
 public class User
@@ -9,15 +10,14 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
-    @Column(name = "user_name")
     private String userName;
-
-    @Column(name = "user_mail")
     private String userMail;
-
-    @Column(name = "user_mobile_number")
     private String userMobileNumber;
+
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User()
     {
@@ -58,5 +58,32 @@ public class User
         this.userMobileNumber = userMobileNumber;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userMail='" + userMail + '\'' +
+                ", userMobileNumber='" + userMobileNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }
