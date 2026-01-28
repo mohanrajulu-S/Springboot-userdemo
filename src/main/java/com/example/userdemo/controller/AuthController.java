@@ -50,7 +50,7 @@ public class AuthController
                 )
         );
 
-        String token = jwtUtil.generateToken(request.getUserName());
+        String token = jwtUtil.generateToken(request.getUserName(),request.getPassword());
         return new AuthResponse(token);
     }
 

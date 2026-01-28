@@ -13,7 +13,6 @@ public class User
     private String userName;
     private String userMail;
     private String userMobileNumber;
-
     private String password;
 
     @Enumerated(EnumType.STRING)

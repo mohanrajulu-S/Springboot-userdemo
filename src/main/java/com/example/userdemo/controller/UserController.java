@@ -3,6 +3,7 @@ package com.example.userdemo.controller;
 import com.example.userdemo.entity.User;
 import com.example.userdemo.exception.UserNotFoundException;
 import com.example.userdemo.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +14,12 @@ public class UserController
 {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository)
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder)
     {
         this.userRepository=userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -41,7 +44,7 @@ public class UserController
 
 
     // ✅ PUT - update user
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public User updateUser(@PathVariable Integer id, @RequestBody User user)
     {
         // Check if user exists
@@ -50,9 +53,13 @@ public class UserController
                         new UserNotFoundException("User not found with id " + id)
                 );
 
-        existingUser.setUserName(user.getUserName());
-        existingUser.setUserMail(user.getUserMail());
-        existingUser.setUserMobileNumber(user.getUserMobileNumber());
+
+//        existingUser.setUserName(user.getUserName());
+//        existingUser.setUserMail(user.getUserMail());
+//        existingUser.setUserMobileNumber(user.getUserMobileNumber());
+        existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        existingUser.setRole(user.getRole());
+
 
         return userRepository.save(existingUser);
     }

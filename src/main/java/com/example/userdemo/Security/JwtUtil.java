@@ -23,39 +23,19 @@ public class JwtUtil
     }
 
 
-    //Generate JWT
-    public String generateToken(String username )
+    //Generate JWT token
+    public String generateToken(String username,String role)
     {
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
+                .claim("role",role)
                 .expiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
                 .signWith(getSigningKey())
                 .compact();
     }
 
-    // Extract Username
-    public String extractUsername(String token)
-    {
-        return getClaims(token).getSubject();
-    }
-
-    //Validate Token
-    public boolean validateToken(String token)
-    {
-        try
-        {
-            getClaims(token);
-            return true;
-        }
-        catch(Exception e)
-        {
-            return false;
-        }
-
-    }
-
-    //Parse claims
+    //Parse claims or Extract claims
     private Claims getClaims(String token)
     {
         return Jwts.parser()
@@ -65,4 +45,44 @@ public class JwtUtil
                 .getPayload();
 
     }
+
+    // Extract Username
+    public String extractUsername(String token)
+    {
+        return getClaims(token).getSubject();
+    }
+
+
+
+
+    public String  extractRole(String token)
+    {
+        return getClaims(token).get("role",String.class);
+    }
+
+    // Validate Token
+    public boolean  validateToken(String token)
+    {
+        return getClaims(token)
+                .getExpiration()
+                .before(new Date(System.currentTimeMillis()+EXPIRATION_TIME));
+    }
+
+
+
+//    //Validate Token
+//    public boolean validateToken(String token)
+//    {
+//        try
+//        {
+//            getClaims(token);
+//            return true;
+//        }
+//        catch(Exception e)
+//        {
+//            return false;
+//        }
+//
+//    }
+
 }
